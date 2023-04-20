@@ -1,0 +1,6 @@
+Download and install the latest version of python3
+Ensure you install every library stated in the file [requirements.txt] using pip
+For every library in the file, install it using pip on the Command Prompt
+    -For example:-
+    Open Command Prompt and Navigate to this directory using the CD command
+    type in pip install opencv-contrib-python to install opencv
