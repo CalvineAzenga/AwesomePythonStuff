@@ -1,0 +1,84 @@
+<nav class="nav-extended teal darken-4 z-depth-3">
+    <div class="nav-wrapper">
+      <a href="" class="brand-logo"><img width="120" height="85" src="{{ url_for('static',filename='./profile/calicomwebLOGO.png') }}"></a>
+      <a href="" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><i class="material-icons red-text">whatshot</i></li>
+        <li><a href="">Threads<span class="new badge red">4</span></a></li>
+        <li><a href=""><a class="waves-effect waves-light btn-small">Sell Here</a></a></li>
+        <li><a href=""><a class="waves-effect waves-light btn-small modal-trigger" href="#signUpModal">Sign Up</a></a></li>
+      </ul>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent">
+        <li class="tab"><a class="active" href="#home">Home</a></li>
+        <li class="tab"><a href="#products">Products</a></li>
+        <li class="tab"><a href="#services">Services</a></li>
+          <li class="tab"><a href="#forum">Forum</a></li>
+        <li class="tab"><a href="#blog">Blog</a></li>
+          <li class="tab"><a href="#contact">Contact</a></li>
+        <li class="tab"><a href="#about">About Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="">Sass</a></li>
+    <li><a href="">Components</a></li>
+    <li><a href="">JavaScript</a></li>
+  </ul>
+
+  <div id="home" class="col s12">
+      <div class="">
+          {% include 'home.html' %}
+      </div>
+  </div>
+  <div id="products" class="col s12">
+      <div class="">
+          {% include 'products.html' %}
+      </div>
+  </div>
+  <div id="services" class="col s12">
+      <div class="">
+          {% include 'services.html' %}
+      </div>
+  </div>
+  <div id="forum" class="col s12">
+      <div class="">
+          {% include 'courses.html' %}
+      </div>
+  </div>
+  <div id="blog" class="col s12">
+      <div class="">
+          {% include 'blog_page.html' %}
+      </div>
+  </div>
+  <div id="contact" class="col s12">
+      <div class="">
+          {% include 'contact.html' %}
+      </div>
+  </div>
+  <div id="about" class="col s12">
+      <div class="">
+          {% include 'about_us.html' %}
+      </div>
+  </div>
+
+
+
+
+
+  <!-- Modal Structure -->
+  <div id="signUpModal" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+
+
+
+
