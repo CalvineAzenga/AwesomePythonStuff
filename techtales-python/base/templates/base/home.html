@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+
+ {% block content %}
+
+ <style>
+    .home-container{
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+ </style>
+
+ <div class="home-container">
+    <div>
+       {% include 'base/topics_component.html' %}
+    </div>
+
+    <div>
+        <div class="z-depth-0" style="padding: 20px;margin:10px;line-height: normal;">
+            <h5 class="left">{{room_count}} room(s) available</h5>
+            <!-- <a href="{% url 'create-room' %}">Create Room</a> -->
+            <a href="{% url 'create-room' %}" class="waves-effect waves-light btn lime darken-4 right"><i class="material-icons left">add</i>Add Room</a>
+            <div style="padding:25px;"></div>
+        </div>
+        
+        {% include 'base/feed_component.html' %}
+
+    </div>
+
+    <div>
+        {% include 'base/activity_component.html' %}
+    </div>
+
+</div>
+{%  endblock content%}
+

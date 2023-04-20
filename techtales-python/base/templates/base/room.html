@@ -1,0 +1,114 @@
+{% extends 'main.html' %}
+{% load static %}
+
+ {% block content %}
+
+ <style>
+    .room-container{
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+    }
+ </style>
+
+<div class="room-container">
+
+    <div class="container">
+        <div class="card lime lighten-4">
+            <div class="card-content white-text">
+                <h1 class="card-title" style="color: #0B0124;">{{room.name}}</h2>
+                    <p class="lime lighten-3" style="padding: 10px;color: #282923;border-radius: 10px;">{{room.description}}</p>
+            </div>
+            <div class="card-action">
+                <span class="topic-tag">Host</span>
+                <div class="chip lime lighten-3">
+                    <img src="{% static 'images/a13.png' %}" alt="Host">
+                    <a href="{% url 'user-profile' room.host.id  %}" style="text-transform: lowercase;color: #0B0124;">@{{room.host}}</a>
+                </div> 
+            </div>
+        </div>
+        
+
+        <div class="comment-wrapper">
+            {% if request.user.is_authenticated %}
+            <div class="comment-form">
+                <form class="card lime lighten-4" style="padding: 20px;" action="" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="body" placeholder="Write your messages here..." />
+                </form>
+            </div>
+            {% endif %}
+            <h5 style="padding: 8px;">{{room_messages.count}} comments</h5>
+            
+            <ul class="collection">
+                {% for message in room_messages %}
+                <li class="collection-item avatar transparent">
+                  <img src="{% static 'images/a13.png' %}" alt="" class="circle">
+                  <span class="title"> 
+                    <small>
+                        <span>
+                            <a href="{% url 'user-profile' message.user.id  %}" class="username-tag">@{{message.user}}</a>
+                        </span> 
+                        {% if '0 minutes' == message.created|timesince|truncatewords:2 %} 
+                        {% comment %}
+                        truncatewords helps remove the non-breaking space for comparison with normal strings in this case
+                        since timesince filter returns a nbsp in the string
+                        {% endcomment %}
+                        just now
+                        {% else %}
+                        {{message.created|timesince}} ago
+
+                        {% endif %}
+                        
+
+                        
+                    </small> 
+                  </span>
+                  <p>
+                    {{message.body}}
+                  </p>
+                  <div>
+                    {% if request.user == message.user %}
+                    <a href="{% url 'delete-message' message.id %}" class="delete-tag">Delete</a>
+                    {% endif %}
+                  </div>
+                  <a href="#!" class="secondary-content"><i class="material-icons">chat</i></a>
+                </li>
+                {% endfor %}
+              </ul>
+            <!-- {% for message in room_messages %}
+                <div>
+                    {% if request.user == message.user %}
+                    <a href="{% url 'delete-message' message.id %}" class="badge red-text">Delete</a>
+                    {% endif %}
+                    <small>
+                        @{{message.user}} {{message.created|timesince}} ago
+                    </small>
+                    <p>
+                        {{message.body}}
+                    </p>
+                    <hr />
+                </div>
+            {% endfor %} -->
+        </div>
+
+
+
+    </div>
+
+    <div>
+        <ul class="collection with-header card">
+            <li class="collection-header lime lighten-4"><h4>Participants</h4></li>
+            {% for user in participants %}
+            <li class="collection-item lime lighten-4">
+                
+                <div class="chip">
+                    <img src="{% static 'images/a13.png' %}" alt="participant">
+                    <a href="{% url 'user-profile' user.id %}">@{{user.username}}</a>                
+                </div> 
+            </li>
+        {% endfor %}
+        </ul>        
+    </div>
+
+</div>
+{%  endblock %} 

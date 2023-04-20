@@ -1,0 +1,11 @@
+<div class="card collection with-header z-depth-0">
+    <div class="collection-header lime lighten-4"><h6>Browse Topics</h6></div>
+    <div class="collection-item lime lighten-4">
+        <a href="{% url 'home' %}">All <span class="new badge orange" data-badge-caption="topics">{{topics.count}}</span> </a>
+    </div>
+    {% for topic in topics %}
+    <div class="collection-item lime lighten-4">
+        <a href="{% url 'home' %}?q={{topic.name|quote_new}}">{{topic.name}} <span class="new badge" data-badge-caption="rooms">{{topic.room_set.all.count}}</span></a>
+    </div>
+    {% endfor %}
+</div>

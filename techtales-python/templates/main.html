@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'materialize/css/materialize.min.css' %}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'materialize/material-icons.css' %}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'styles/main.css' %}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'global_font.css' %}">
+
+    <title>TechTales</title>
+</head>
+<body class="lime lighten-5">
+    {% include 'navbar.html' %}
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% block content %}
+
+    {% endblock %}
+
+    <script type="text/javascript" src="{% static 'jquery/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'materialize/js/materialize.js' %}"></script>
+    <script type="text/javascript" src="{% static 'init.js' %}"></script>
+
+
+</body>
+</html>

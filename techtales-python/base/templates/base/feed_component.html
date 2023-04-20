@@ -1,0 +1,50 @@
+{% load static %}
+<ul class="" style="margin: 10px">
+    {% for room in rooms %}
+        <li class="card lime lighten-4" style="padding:30px;border-radius: 10px;">
+            <div>
+                {% if request.user == room.host %}
+                <a href="{% url 'update-room' room.id  %}" class="right"><span class="edit-tag">Edit</span> </a>
+                <a href="{% url 'delete-room' room.id  %}" class="right"><span class="delete-tag">Delete</span></a>
+                {% endif %}
+                <br />
+                <span class="username_plus_img_tag">
+                    <img src="{% static 'images/a13.png' %}" alt="" class="circle small-user-img">
+                    <a href="{% url 'user-profile' room.host.id %}" class="username-tag transparent">@{{ room.host.username }}</a>
+                </span>
+
+                <span class="right">
+                    <small>created {{room.created|timesince}} ago</small>
+                </span>
+
+                
+                <h5><!-- {{room.id}} --  --><a href="{% url 'room' room.id %}" style="color: #0B0124;">{{room.name}}</a></h5>
+                <p class="lime lighten-3" style="padding:10px;border-radius: 5px;">{{room.description}}</p>
+            </div>
+
+            <div style="height: 2px;background-color:silver;margin:0 0 10px 0;"></div>
+
+            <div class="secondary-content left black-text" style="margin-right: 10px;">
+                <span style="display: flex;flex-direction:row;font-size:15px;">
+                    <i class="material-icons" style="font-size:22px;">group</i>
+                    {{room.participants.count}}
+                </span>
+            </div>
+
+            <div class="secondary-content left black-text">
+                <span style="display: flex;flex-direction:row;font-size:15px;">
+                    <i class="material-icons" style="font-size:18px;">comment</i>
+                    {{room.message_set.all.count}}
+                </span>
+            </div>
+
+            <div class="secondary-content">
+                <small class="topic-tag">{{room.topic.name}}</small>
+            </div>
+            <div style="padding: 10px;">
+
+            </div>
+            
+        </li>
+    {% endfor %}
+</ul>

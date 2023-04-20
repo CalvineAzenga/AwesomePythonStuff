@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="container" >
+    <div class="card" style="padding: 20px;">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <h5>Are you sure you want to delete "{{obj}}"?</h5>
+        
+            <a href="{{request.META.HTTP_REFERER}}"><i class="material-icons" style="padding: 20px;">arrow_back</i></a>
+            <input class="btn" type="submit" value="Confirm" />
+        </form>
+    </div>
+</div>
+
+
+{% endblock content %}

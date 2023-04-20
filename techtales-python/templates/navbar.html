@@ -1,0 +1,74 @@
+{% load static %}
+
+<nav class="lime darken-4">
+    <div class="nav-wrapper nav-content">
+        <a href="{% url 'home' %}" class="brand-logo" style="font-family: nasalization;padding:5px;"> <span style="color: #878787;">Tech</span><span style="color: #DCDAD5;">Tales</span> </a>
+        <ul class="right hide-on-med-and-down">
+        <li>
+            <form action="{% url 'home' %}" method="GET">
+                <div>
+                    <input type="search" name="q" placeholder="Search Rooms..." />
+                </div>
+                
+    
+            </form>
+        </li>
+        <li><a href=""><i class="material-icons">refresh</i></a></li>
+
+
+        {% if request.user.is_authenticated %}
+        <li> 
+            <a href="">
+                <div style="display: flex;flex-direction: row;align-items: center;line-height: normal;">
+                    <div style="line-height: normal;">
+                        <img src="{% static 'images/a13.png' %}" width="44" height="44">
+                    </div>
+                    
+                    <div style="display: flex;flex-direction: column;padding-left: 4px;line-height: normal;">
+                        <small>{{request.user}}</small>
+                        <div>@{{request.user.username}}</div>
+                    </div>
+                    
+                </div>
+            </a>
+            
+            
+            <!-- <p>Hello</p> -->
+        </li>
+<!--     
+        <li>
+
+            <ul class="">
+                 <li>{{request.user}} </li> 
+                <li>@{{request.user.username}}</li>
+            </ul>
+        </li> -->
+    
+        <li>
+            <div>
+                <ul id="about_account_dropdown" class="dropdown-content">
+                    <li><a href="% url 'setting' %">Settings</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+                <a href="">
+                    <i class="material-icons dropdown-trigger" href="#!" data-target="about_account_dropdown">more_vert</i>
+                </a>
+            </div>
+        </li>
+        {% else %}
+        <li>
+            <a href="{% url 'login' %}">Login/Register</a>
+        </li>
+            
+            
+        {% endif %}
+        </ul>
+    </div>
+</nav>
+
+
+
+
+
+
+

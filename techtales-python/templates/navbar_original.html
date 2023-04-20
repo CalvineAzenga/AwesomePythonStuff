@@ -1,0 +1,50 @@
+{% load static %}
+
+
+<a href="/">
+    <h1>LOGO</h1>
+</a>
+<form action="{% url 'home' %}" method="GET">
+    <input type="search" name="q" placeholder="Search Rooms..." />
+</form>
+
+{% if request.user.is_authenticated %}
+<p>Hello {{request.user}}</p>
+
+<div>
+    <ul id="about_account_dropdown" class="dropdown-content">
+        <li><a href="% url 'setting' %">Settings</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+    <a>
+        
+        <div>
+            
+            
+            <div>
+                <img src="{% static 'images/a13.png' %}" width="44" height="44">
+                <span>{{request.user}}</span>
+            </div>
+            <div class="btn-flat dropdown-trigger" href="#!" data-target="about_account_dropdown">
+                <div>
+                    @{{request.user.username}}
+                    <i class="material-icons right">arrow_drop_down</i>
+                </div>
+                
+            </div>
+        </div>
+        
+
+       
+        
+    </a>
+</div>
+
+
+
+{% else %}
+<a href="{% url 'login' %}">Login/Register</a>
+
+{% endif %}
+<hr />
+
